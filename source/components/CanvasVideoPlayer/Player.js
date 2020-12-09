@@ -26,7 +26,7 @@ export default props => {
 						>
 							<img
 								className={$.playPause}
-								src={`/video-player/${(!isPlaying && "play") || "pause"}.svg`}
+								src={`video-player/${(!isPlaying && "play") || "pause"}.svg`}
 							/>
 						</div>
 					</div>
