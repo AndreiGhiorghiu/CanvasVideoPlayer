@@ -1,0 +1,5 @@
+@media (min-width: 768px) {
+	.sidebar {
+		max-width: 350px !important;
+	}
+}

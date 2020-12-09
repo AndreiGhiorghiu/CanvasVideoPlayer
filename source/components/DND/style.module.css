@@ -1,0 +1,38 @@
+.zone {
+	flex: 1;
+	height: 100%;
+	position: relative;
+}
+.leftPlaceholder:after {
+	content: "";
+	background: red;
+	position: absolute;
+	left: -2px;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+}
+.leftPlaceholder.frame:after {
+	background: #0080004a;
+	right: 0px;
+	width: auto;
+	height: 50px;
+	top: auto;
+}
+.rightPlaceholder:after {
+	content: "";
+	background: red;
+	position: absolute;
+	right: -2px;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+}
+
+.rightPlaceholder.frame:after {
+	background: #0080004a;
+	left: 0;
+	width: auto;
+	height: 50px;
+	top: auto;
+}

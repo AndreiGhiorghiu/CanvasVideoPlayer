@@ -1,0 +1,13 @@
+.imageContainer {
+	border: 1px solid #e3ebf6;
+	height: 80vh;
+	width: 80%;
+	margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+	.editor {
+		margin-left: 350px !important;
+		padding: 0 15px;
+	}
+}
