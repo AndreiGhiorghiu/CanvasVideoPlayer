@@ -33,4 +33,16 @@ export const [useStore, api] = create((set, store) => ({
 
 		set({ scenes });
 	},
+
+	moveScenes(scene, left, to) {
+		const { scenes } = store();
+
+		const oldScene = scenes[scene.index];
+
+		scenes.splice(scene.index, 1);
+
+		scenes.splice(to.index, 0, oldScene);
+
+		set({ scenes });
+	},
 }));

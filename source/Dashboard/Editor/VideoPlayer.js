@@ -14,7 +14,7 @@ export default props => {
 		stage.add(layer);
 
 		var video = document.createElement("video");
-		video.src = "/assets/images/media-editor/video2.mp4";
+		video.src = `${PUBLICPATH}/assets/images/media-editor/video2.mp4`;
 
 		const image = new Konva.Image({
 			image: video,

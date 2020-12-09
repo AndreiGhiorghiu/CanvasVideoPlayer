@@ -1,9 +1,13 @@
 const path = require("path");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const webpack = require("webpack");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+
+const PUBLICPATH =
+	("production" === process.env.NODE_ENV && "/CanvasVideoPlayer") || "";
 
 module.exports = {
 	resolve: {
@@ -18,8 +22,8 @@ module.exports = {
 	},
 	mode: process.env.NODE_ENV,
 	output: {
-		path: path.resolve(__dirname, "public/assets/js"),
-		publicPath: "/assets/js/",
+		path: path.resolve(__dirname, "docs/assets/js"),
+		publicPath: PUBLICPATH + "/assets/js/",
 		filename: "[name].js",
 	},
 	watch: "production" !== process.env.NODE_ENV,
@@ -106,6 +110,9 @@ module.exports = {
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
 			filename: "../css/[name].css",
+		}),
+		new webpack.DefinePlugin({
+			PUBLICPATH: JSON.stringify(PUBLICPATH),
 		}),
 	],
 };

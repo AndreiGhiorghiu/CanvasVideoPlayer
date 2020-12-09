@@ -29,6 +29,8 @@
 	background-color: #e3ebf6;
 	width: 75px;
 	height: 60px;
+	position: relative;
+	cursor: grab;
 }
 .scenesContainer {
 	width: 90%;
@@ -42,4 +44,44 @@
 	padding: 0 5px;
 	border-right: 1px solid #e3ebf6;
 	font-size: 10px;
+}
+.mediaScene:hover .expand,
+.mediaScene:hover .remove {
+	display: flex;
+}
+.expand img {
+	width: 80%;
+}
+.expand {
+	width: 20px;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	right: -20px;
+	top: 0;
+	bottom: 0;
+	background: rgba(135, 139, 144, 0.7);
+	z-index: 9;
+	cursor: pointer;
+	height: 100%;
+	border: 1px solid;
+	border-left: 0px;
+	display: none;
+}
+
+.remove {
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: rgba(255, 255, 255, 0.7);
+	z-index: 9;
+	cursor: pointer;
+	height: 20px;
+	display: none;
+}
+.remove img {
+	width: 13px;
 }

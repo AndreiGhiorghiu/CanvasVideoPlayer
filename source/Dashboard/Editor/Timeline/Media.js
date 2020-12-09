@@ -1,14 +1,18 @@
 import React, { useState } from "react";
-import { Zone } from "$comp/DND";
+import { Zone, Element } from "$comp/DND";
 import { api, useStore } from "../../store.js";
 import secondsMs from "$s/utils/secondsMs.js";
 import $ from "./style.module.css";
 
 export default props => {
-	const { scenes, setScenes } = useStore();
+	const { scenes, setScenes, moveScenes } = useStore();
 
 	function updateScenes(e) {
-		setScenes(e.element);
+		if (e.element.source === "timeline") {
+			moveScenes(e.element, e.left, e.to);
+		} else {
+			setScenes(e.element);
+		}
 	}
 
 	function renderMedia() {
@@ -26,21 +30,41 @@ export default props => {
 			}
 
 			return (
-				<div className={$.scene}>
-					<div className={$.info}>
-						<span>{secondsMs(secondsFrom)}</span>
-						<span>{secondsMs(secondsTo)}</span>
-					</div>
-					<div
-						key={scene.id}
-						className={$.mediaScene}
-						style={{
-							backgroundImage: `url(${
-								(scene.type === "video" && scene.poster) || scene.src
-							})`,
-							minWidth: `${scene.loop * 15}px`,
-						}}
-					></div>
+				<div className={$.scene} key={scene.id}>
+					<Zone
+						component={`frame-${scene.id}`}
+						droppableid={`video-${scene.id}`}
+						index={index}
+						onDragEnd={element => updateScenes(element)}
+					>
+						<div>
+							<div className={$.info}>
+								<span>{secondsMs(secondsFrom)}</span>
+								<span>{secondsMs(secondsTo)}</span>
+							</div>
+							<Element data={scene} source="timeline" index={index}>
+								<div
+									className={$.mediaScene}
+									style={{
+										backgroundImage: `url(${
+											(scene.type === "video" && scene.poster) || scene.src
+										})`,
+										minWidth: `${scene.loop * 15}px`,
+									}}
+								>
+									<div
+										className={$.expand}
+										onClick={e => {
+											e.preventDefault();
+											e.stopPropagation();
+										}}
+									>
+										<img src={`${PUBLICPATH}/video-player/arrows-alt-h.svg`} />
+									</div>
+								</div>
+							</Element>
+						</div>
+					</Zone>
 				</div>
 			);
 		});
@@ -58,7 +82,7 @@ export default props => {
 						index={null}
 						onDragEnd={e => updateScenes(e)}
 					>
-						<div></div>
+						<div />
 					</Zone>
 				</div>
 			</div>

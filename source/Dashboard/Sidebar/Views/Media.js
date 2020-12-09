@@ -43,7 +43,7 @@ export default ({ media }) => {
 			>
 				<img
 					style={{ objectFit: "contain" }}
-					src="/assets/images/plus-solid.svg"
+					src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
 					className="avatar-img rounded"
 				/>
 			</div>
@@ -88,7 +88,7 @@ export default ({ media }) => {
 			>
 				<img
 					style={{ objectFit: "contain" }}
-					src="/assets/images/plus-solid.svg"
+					src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
 					className="avatar-img rounded"
 				/>
 			</div>
@@ -112,7 +112,7 @@ export default ({ media }) => {
 			<div key="add-audio" className={`${$.addAudio} ${$.addButton}`}>
 				<img
 					style={{ objectFit: "contain" }}
-					src="/assets/images/plus-solid.svg"
+					src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
 					className="avatar-img rounded"
 				/>
 			</div>

@@ -9,11 +9,11 @@ export default props => {
 
 	const img = new Image();
 	if (props.data.type === "video") {
-		img.src = "/assets/images/film.svg";
+		img.src = `${PUBLICPATH}/assets/images/film.svg`;
 	} else if (props.data.type === "audio") {
-		img.src = "/assets/images/music.svg";
+		img.src = `${PUBLICPATH}/assets/images/music.svg`;
 	} else {
-		img.src = "/assets/images/image.svg";
+		img.src = `${PUBLICPATH}/assets/images/image.svg`;
 	}
 
 	function dragStart(ev) {
