@@ -1,43 +1,43 @@
 media:
   images:
-    - src: /assets/images/media-editor/img1.jpg
-      thumb: /assets/images/media-editor/img1-thumb.jpg
+    - src: assets/images/media-editor/img1.jpg
+      thumb: assets/images/media-editor/img1-thumb.jpg
 
-    - src: /assets/images/media-editor/img2.jpg
-      thumb: /assets/images/media-editor/img2-thumb.jpg
+    - src: assets/images/media-editor/img2.jpg
+      thumb: assets/images/media-editor/img2-thumb.jpg
 
-    - src: /assets/images/media-editor/img3.webp
-      thumb: /assets/images/media-editor/img3-thumb.jpg
+    - src: assets/images/media-editor/img3.webp
+      thumb: assets/images/media-editor/img3-thumb.jpg
 
-    - src: /assets/images/media-editor/img4.jpg
-      thumb: /assets/images/media-editor/img4-thumb.jpg
+    - src: assets/images/media-editor/img4.jpg
+      thumb: assets/images/media-editor/img4-thumb.jpg
 
-    - src: /assets/images/media-editor/img5.webp
-      thumb: /assets/images/media-editor/img5-thumb.jpg
+    - src: assets/images/media-editor/img5.webp
+      thumb: assets/images/media-editor/img5-thumb.jpg
 
   videos:
-    - src: /assets/images/media-editor/video3.mp4
-      poster: /assets/images/media-editor/video3.png
+    - src: assets/images/media-editor/video3.mp4
+      poster: assets/images/media-editor/video3.png
 
-    - src: /assets/images/media-editor/video4.mp4
-      poster: /assets/images/media-editor/video4.png
+    - src: assets/images/media-editor/video4.mp4
+      poster: assets/images/media-editor/video4.png
 
   audios:
     - src: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3
     - src: https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3
 
 scenes:
-  - src: /assets/images/media-editor/video2.mp4
+  - src: assets/images/media-editor/video2.mp4
     id: "test2"
     type: video
     loop: 15
 
-  - src: /assets/images/media-editor/img1.jpg
+  - src: assets/images/media-editor/img1.jpg
     id: "test1"
     type: image
     loop: 2
 
-  - src: /assets/images/media-editor/video4.mp4
+  - src: assets/images/media-editor/video4.mp4
     id: "test3"
     type: video
     loop: 1
