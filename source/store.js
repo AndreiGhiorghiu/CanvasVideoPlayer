@@ -1,5 +1,5 @@
 import create from "zustand";
 
-export const [useStore, api] = create(set => ({
-	view: "dashboard",
+export const [useStore, api] = create((set) => ({
+  view: "dashboard",
 }));

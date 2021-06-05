@@ -1,4 +1,4 @@
-import Element from "./Element.js";
-import Zone from "./Zone.js";
+import Element from "./Element";
+import Zone from "./Zone";
 
 export { Element, Zone };

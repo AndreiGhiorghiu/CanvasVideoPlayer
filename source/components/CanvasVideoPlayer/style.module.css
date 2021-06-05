@@ -1,47 +1,50 @@
 #play {
 }
 #pause {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 .buttons {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: calc(10% - 10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(10% - 10px);
 }
 .stage {
-	min-width: 500px;
-	min-height: 500px;
+  min-width: 500px;
+  min-height: 500px;
+  box-shadow: 30px -25px 50px 10px #78879a, -30px 25px 50px -10px #78879a;
+  border-radius: 6px;
+  overflow: hidden;
 }
 .seconds {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .actions {
-	position: absolute;
-	bottom: 0;
-	display: flex;
-	width: 100%;
-	color: #fff;
-	cursor: pointer;
-	justify-content: space-between;
-	padding: 0 10px;
-	background: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+  justify-content: space-between;
+  padding: 0 10px;
+  background: rgba(0, 0, 0, 0.2);
 }
 .videoPlayer {
-	display: inline-block;
-	position: relative;
+  display: inline-block;
+  position: relative;
 }
 .timeBar {
-	width: 90%;
+  width: 90%;
 }
 .secondsRange {
-	width: 100%;
-	padding: 0;
+  width: 100%;
+  padding: 0;
 }
 .playPause {
-	width: 20px;
-	cursor: pointer;
+  width: 20px;
+  cursor: pointer;
 }

@@ -1,4 +1,4 @@
-import Editor from "./Editor.js";
-import Sidebar from "./Sidebar.js";
+import Editor from "./Editor";
+import Sidebar from "./Sidebar";
 
 export default { Sidebar, Editor };

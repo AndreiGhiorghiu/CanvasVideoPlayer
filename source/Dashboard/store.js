@@ -1,48 +1,88 @@
 import create from "zustand";
 import cuid from "cuid";
+import config from "$config/videoGenerator.json";
 
 export const [useStore, api] = create((set, store) => ({
-	scenes: [],
+  scenes: config.scenes || [],
+  audio: config.audio || [],
 
-	getVideoData(src) {
-		return new Promise((resolve, reject) => {
-			const node = document.createElement("video");
-			node.src = src;
+  getVideoData(src) {
+    return new Promise((resolve, reject) => {
+      const node = document.createElement("video");
+      node.src = src;
 
-			node.ondurationchange = element => {
-				console.log([node]);
+      node.ondurationchange = (element) => {
+        return resolve({ duration: element.path[0].duration });
+      };
+    });
+  },
 
-				return resolve({ duration: element.path[0].duration });
-			};
-		});
-	},
+  getAudioData(src) {
+    return new Promise((resolve, reject) => {
+      const node = document.createElement("audio");
+      node.src = src;
 
-	async setScenes(scene) {
-		const { scenes, getVideoData } = store();
+      node.ondurationchange = (element) => {
+        return resolve({ duration: element.path[0].duration });
+      };
+    });
+  },
 
-		if (scene.type === "video") {
-			const data = await getVideoData(scene.src);
-			scene.loop = data.duration;
-		} else {
-			scene.loop = 5;
-		}
+  async setScenes(scene) {
+    const { scenes, getVideoData } = store();
 
-		scene.id = cuid();
+    if (scene.type === "video") {
+      const data = await getVideoData(scene.src);
+      scene.loop = data.duration;
+    } else {
+      scene.loop = 5;
+    }
 
-		scenes.push(scene);
+    scene.id = cuid();
 
-		set({ scenes });
-	},
+    scenes.push(scene);
 
-	moveScenes(scene, left, to) {
-		const { scenes } = store();
+    set({ scenes });
+  },
 
-		const oldScene = scenes[scene.index];
+  async setAudioScenes(scene) {
+    const { audio, getAudioData } = store();
 
-		scenes.splice(scene.index, 1);
+    if (scene.type === "audio") {
+      const data = await getAudioData(scene.src);
+      scene.loop = data.duration;
+    } else {
+      scene.loop = 5;
+    }
 
-		scenes.splice(to.index, 0, oldScene);
+    scene.id = cuid();
 
-		set({ scenes });
-	},
+    audio.push(scene);
+
+    set({ audio });
+  },
+
+  moveScenes(scene, left, to) {
+    const { scenes } = store();
+
+    const oldScene = scenes[scene.index];
+
+    scenes.splice(scene.index, 1);
+
+    scenes.splice(to.index, 0, oldScene);
+
+    set({ scenes });
+  },
+
+  moveAudioScenes(scene, left, to) {
+    const { audio } = store();
+
+    const oldScene = audio[scene.index];
+
+    audio.splice(scene.index, 1);
+
+    audio.splice(to.index, 0, oldScene);
+
+    set({ audio });
+  },
 }));

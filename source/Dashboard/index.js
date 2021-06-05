@@ -1,6 +1,4 @@
-import loadable from "@loadable/component";
-
-const Editor = loadable(() => import("./Editor"));
-const Sidebar = loadable(() => import("./Sidebar"));
+import Editor from "./Editor";
+import Sidebar from "./Sidebar";
 
 export default { Sidebar, Editor };
