@@ -23,7 +23,6 @@ export default ({ mode }) => {
     },
 
     build: {
-      minify: "false",
       outDir: "docs",
     },
 
