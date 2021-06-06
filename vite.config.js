@@ -3,7 +3,7 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 const cwd = process.cwd();
 
 export default ({ mode }) => {
-  const PUBLICPATH = ("development" !== mode && "") || "";
+  const PUBLICPATH = ("development" !== mode && "/CanvasVideoPlayer") || "";
 
   return {
     root: `${cwd}`,
