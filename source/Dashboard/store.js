@@ -28,7 +28,7 @@ export const [useStore, api] = create((set, store) => ({
     });
   },
 
-  async setScenes(scene) {
+  async setScenes(scene, add = true) {
     const { scenes, getVideoData } = store();
 
     if (scene.type === "video") {
@@ -40,12 +40,16 @@ export const [useStore, api] = create((set, store) => ({
 
     scene.id = cuid();
 
-    scenes.push(scene);
+    if (add) {
+      scenes.push(scene);
 
-    set({ scenes });
+      set({ scenes });
+    }
+
+    return scene;
   },
 
-  async setAudioScenes(scene) {
+  async setAudioScenes(scene, add = true) {
     const { audio, getAudioData } = store();
 
     if (scene.type === "audio") {
@@ -57,32 +61,67 @@ export const [useStore, api] = create((set, store) => ({
 
     scene.id = cuid();
 
-    audio.push(scene);
+    if (add) {
+      audio.push(scene);
 
-    set({ audio });
+      set({ audio });
+    }
+
+    return scene;
   },
 
-  moveScenes(scene, left, to) {
-    const { scenes } = store();
+  async moveScenes(scene, left, to) {
+    const { scenes, setScenes } = store();
 
-    const oldScene = scenes[scene.index];
+    let oldScene = scenes[scene.index];
 
-    scenes.splice(scene.index, 1);
+    if (scene.source === "sidebar") {
+      oldScene = await setScenes(scene, false);
+    } else {
+      scenes.splice(scene.index, 1);
+    }
 
-    scenes.splice(to.index, 0, oldScene);
+    if (left) {
+      scenes.splice(to.index, 0, oldScene);
+    } else {
+      scenes.splice(to.index + 1, 0, oldScene);
+    }
 
     set({ scenes });
   },
 
-  moveAudioScenes(scene, left, to) {
-    const { audio } = store();
+  async moveAudioScenes(scene, left, to) {
+    const { audio, setAudioScenes } = store();
 
-    const oldScene = audio[scene.index];
+    let oldScene = audio[scene.index];
 
-    audio.splice(scene.index, 1);
+    if (scene.source === "sidebar") {
+      oldScene = await setAudioScenes(scene, false);
+    } else {
+      audio.splice(scene.index, 1);
+    }
 
-    audio.splice(to.index, 0, oldScene);
+    console.log(oldScene);
+
+    if (left) {
+      audio.splice(to.index, 0, oldScene);
+    } else {
+      audio.splice(to.index + 1, 0, oldScene);
+    }
 
     set({ audio });
+  },
+
+  updateScene(id, data) {
+    const { scenes } = store();
+
+    const updatedScenes = scenes.map((scene) => {
+      if (scene.id === id) {
+        return { ...scene, ...data };
+      }
+      return scene;
+    });
+
+    set({ scenes: updatedScenes });
   },
 }));

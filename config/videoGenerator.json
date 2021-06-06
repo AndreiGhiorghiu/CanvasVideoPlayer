@@ -24,6 +24,10 @@
     ],
     "videos": [
       {
+        "src": "assets/images/media-editor/video1.mp4",
+        "poster": "assets/images/media-editor/video1.png"
+      },
+      {
         "src": "assets/images/media-editor/video3.mp4",
         "poster": "assets/images/media-editor/video3.png"
       },
@@ -59,11 +63,11 @@
       "loop": 2
     },
     {
-      "src": "assets/images/media-editor/video4.mp4",
-      "poster": "assets/images/media-editor/video4.png",
+      "src": "assets/images/media-editor/video1.mp4",
+      "poster": "assets/images/media-editor/video1.png",
       "id": "test3",
       "type": "video",
-      "loop": 1
+      "loop": 5
     }
   ],
   "audio": [
@@ -73,6 +77,13 @@
       "id": "audio1",
       "type": "audio",
       "loop": 8
+    },
+    {
+      "src": "assets/images/media-editor/Ben E. King - part 3.mp3",
+      "name": "Ben E. King - part 3",
+      "id": "audio3",
+      "type": "audio",
+      "loop": 9
     }
   ]
 }

@@ -15,10 +15,10 @@ export default (props) => {
 
     e.element.name = name;
 
-    if (e.element.source === "timeline") {
-      moveAudioScenes(e.element, e.left, e.to);
-    } else {
+    if (e.to.component === "frame") {
       setAudioScenes(e.element);
+    } else {
+      moveAudioScenes(e.element, e.left, e.to);
     }
   }
 

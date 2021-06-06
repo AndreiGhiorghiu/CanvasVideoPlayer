@@ -12,7 +12,7 @@ export default (props) => {
       <Tabs>
         <Media media={config.media} title="Media" />
         <Settings title="Settings" />
-        <Advanced title="Advanced" />
+        {/* <Advanced title="Advanced" /> */}
       </Tabs>
     </div>
   );

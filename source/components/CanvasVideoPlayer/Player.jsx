@@ -4,7 +4,7 @@ import secondsMs from "$s/utils/secondsMs";
 import $ from "./style.module.css";
 
 export default ({ scenes, audio }) => {
-  const [seconds, onChange, isPlaying, togglePlaying] = useVideoPlayer(
+  const { seconds, onChange, isPlaying, togglePlaying } = useVideoPlayer(
     scenes,
     audio
   );
@@ -18,7 +18,7 @@ export default ({ scenes, audio }) => {
   }, [scenes]);
 
   return (
-    <div>
+    <div data-seconds={`${seconds}`}>
       <div className={$.videoPlayer}>
         <div className={$.stage}></div>
         <div className={$.actions}>

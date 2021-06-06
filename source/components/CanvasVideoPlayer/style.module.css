@@ -24,7 +24,7 @@
 
 .actions {
   position: absolute;
-  bottom: 5px;
+  bottom: 0px;
   display: flex;
   width: 100%;
   color: #fff;
@@ -32,6 +32,8 @@
   justify-content: space-between;
   padding: 0 10px;
   background: rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 .videoPlayer {
   display: inline-block;

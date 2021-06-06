@@ -15,23 +15,20 @@ export default (props) => {
       <Sidebar view={view}>
         <Dashboard.Sidebar title="Dashboard" name="dashboard" />
         <Photo.Sidebar
-          title="Photo"
+          title="Photo Edit"
           name="photo"
-          back={() => {
-            api.setState({ view: (view === "photo" && "video") || "photo" });
-          }}
+          scene={api.getState().scene}
+          back={() => api.setState({ view: "dashboard" })}
         />
         <Video.Sidebar
           title="Video"
           name="video"
-          back={() => {
-            api.setState({ view: (view === "photo" && "video") || "photo" });
-          }}
+          back={() => api.setState({ view: "dashboard" })}
         />
       </Sidebar>
       <Editor view={api.getState().view}>
         <Dashboard.Editor name="dashboard" />
-        <Photo.Editor name="photo" />
+        <Photo.Editor name="photo" scene={api.getState().scene} />
         <Video.Editor name="video" />
       </Editor>
     </div>

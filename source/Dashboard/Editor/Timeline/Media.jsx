@@ -1,18 +1,61 @@
-import React, { useState } from "react";
+import React from "react";
 import { Zone, Element } from "$comp/DND";
-import { api, useStore } from "../../store";
+import { useStore } from "../../store";
 import secondsMs from "$s/utils/secondsMs";
 import $ from "./style.module.css";
+import { api as viewApi } from "$s/store.js";
 
-export default (props) => {
-  const { scenes, setScenes, moveScenes } = useStore();
+export default () => {
+  const { scenes, setScenes, moveScenes, updateScene } = useStore();
 
   function updateScenes(e) {
-    if (e.element.source === "timeline") {
-      moveScenes(e.element, e.left, e.to);
-    } else {
+    if (e.to.component === "frame") {
       setScenes(e.element);
+    } else {
+      moveScenes(e.element, e.left, e.to);
     }
+  }
+
+  function onDrag(event, sceneId) {
+    const newX = event.clientX;
+
+    const element = document.querySelector(`[scene-ref=${sceneId}]`);
+    const elementDefaultWidth = parseInt(element.style.minWidth.replace("px"));
+
+    const elementWidth =
+      element.getBoundingClientRect().x + elementDefaultWidth;
+
+    element.style.minWidth = `${elementDefaultWidth + newX - elementWidth}px`;
+  }
+
+  function onDragEnd(_event, sceneId) {
+    const element = document.querySelector(`[scene-ref=${sceneId}]`);
+    const elementWidth = parseInt(element.style.minWidth.replace("px"));
+    const loop = elementWidth / 15;
+
+    updateScene(sceneId, { loop });
+  }
+
+  function expand(sceneId) {
+    return (
+      <div
+        className={$.expand}
+        draggable={true}
+        onDrag={(e) => onDrag(e, sceneId)}
+        onDragEnd={(e) => onDragEnd(e, sceneId)}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
+        <img src={`${PUBLICPATH}/video-player/arrows-alt-h.svg`} />
+      </div>
+    );
+  }
+
+  function onClickPhoto(scene) {
+    viewApi.getState().setView("photo");
+    viewApi.getState().setEditScene(scene);
   }
 
   function renderMedia() {
@@ -37,7 +80,7 @@ export default (props) => {
             index={index}
             onDragEnd={(element) => updateScenes(element)}
           >
-            <div>
+            <div className={$.mediaSceneContainer}>
               <div className={$.info}>
                 <span>{secondsMs(secondsFrom)}</span>
                 <span>{secondsMs(secondsTo)}</span>
@@ -45,24 +88,19 @@ export default (props) => {
               <Element data={scene} source="timeline" index={index}>
                 <div
                   className={$.mediaScene}
+                  scene-ref={scene.id}
+                  onClick={(e) => {
+                    if (scene.type !== "video") onClickPhoto(scene);
+                  }}
                   style={{
                     backgroundImage: `url(${
                       (scene.type === "video" && scene.poster) || scene.src
                     })`,
                     minWidth: `${scene.loop * 15}px`,
                   }}
-                >
-                  <div
-                    className={$.expand}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
-                  >
-                    <img src={`${PUBLICPATH}/video-player/arrows-alt-h.svg`} />
-                  </div>
-                </div>
+                ></div>
               </Element>
+              {scene.type !== "video" && expand(scene.id)}
             </div>
           </Zone>
         </div>

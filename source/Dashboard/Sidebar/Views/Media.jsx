@@ -36,18 +36,18 @@ export default ({ media }) => {
       </div>
     ));
 
-    mediaImages.push(
-      <div
-        key={"add-image"}
-        className={`${$.singleMedia} ${$.addButton} avatar avatar-lg avatar-4by3`}
-      >
-        <img
-          style={{ objectFit: "contain" }}
-          src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
-          className="avatar-img rounded"
-        />
-      </div>
-    );
+    // mediaImages.push(
+    //   <div
+    //     key={"add-image"}
+    //     className={`${$.singleMedia} ${$.addButton} avatar avatar-lg avatar-4by3`}
+    //   >
+    //     <img
+    //       style={{ objectFit: "contain" }}
+    //       src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
+    //       className="avatar-img rounded"
+    //     />
+    //   </div>
+    // );
 
     const emptyCards = renderEmptyCards(media.images.length + 1);
 
@@ -81,18 +81,18 @@ export default ({ media }) => {
       </div>
     ));
 
-    mediaVideos.push(
-      <div
-        key={"add-video"}
-        className={`${$.singleMedia} ${$.addButton} avatar avatar-lg avatar-4by3`}
-      >
-        <img
-          style={{ objectFit: "contain" }}
-          src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
-          className="avatar-img rounded"
-        />
-      </div>
-    );
+    // mediaVideos.push(
+    //   <div
+    //     key={"add-video"}
+    //     className={`${$.singleMedia} ${$.addButton} avatar avatar-lg avatar-4by3`}
+    //   >
+    //     <img
+    //       style={{ objectFit: "contain" }}
+    //       src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
+    //       className="avatar-img rounded"
+    //     />
+    //   </div>
+    // );
 
     const emptyCards = renderEmptyCards(media.videos.length + 1);
 
@@ -117,15 +117,15 @@ export default ({ media }) => {
       </div>
     ));
 
-    mediaAudios.push(
-      <div key="add-audio" className={`${$.addAudio} ${$.addButton}`}>
-        <img
-          style={{ objectFit: "contain" }}
-          src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
-          className="avatar-img rounded"
-        />
-      </div>
-    );
+    // mediaAudios.push(
+    //   <div key="add-audio" className={`${$.addAudio} ${$.addButton}`}>
+    //     <img
+    //       style={{ objectFit: "contain" }}
+    //       src={`${PUBLICPATH}/assets/images/plus-solid.svg`}
+    //       className="avatar-img rounded"
+    //     />
+    //   </div>
+    // );
 
     return mediaAudios;
   };
